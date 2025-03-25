@@ -22,5 +22,14 @@ public class AuthorService extends GenericService<Author, AuthorDTO> {
         return null;
     }
 
+    @Override
+    public void updateValues(Author entity, AuthorDTO dto) {
+        entity.setFirstName(dto.getFirstName());
+        entity.setLastName(dto.getLastName());
+        entity.setEmail(dto.getEmail());
+        entity.setPhone(dto.getPhone());
+        entity.setBirthDate(dto.getBirthDate());
+    }
+
 
 }

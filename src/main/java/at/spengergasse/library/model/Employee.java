@@ -3,6 +3,7 @@ package at.spengergasse.library.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -28,10 +29,20 @@ public class Employee extends Person {
         return Objects.hash(super.hashCode(), getRole(), getLocation());
     }
 
+    @Getter
     public enum Role {
-        LIBRARIAN,
-        MANAGER,
-        DIRECTOR,
+        STORE_WORKER(1),
+        WAREHOUSE_WORKER(1),
+        LIBRARIAN(1),
+        MANAGER(2),
+        DIRECTOR(3);
+
+        @PositiveOrZero
+        private final int importanceLevel;
+
+        Role(int importanceLevel) {
+            this.importanceLevel = importanceLevel;
+        }
     }
 
     @Setter

@@ -1,6 +1,7 @@
 package at.spengergasse.library.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -28,13 +29,11 @@ public class Location extends AbstractEntity {
     private Address address;
 
     @ManyToMany
-    @JsonManagedReference
-    @JsonBackReference
+    @JsonIgnoreProperties("connectionsFrom")
     private final List<Location> connectionsTo = new ArrayList<>();
 
     @ManyToMany
-    @JsonManagedReference
-    @JsonBackReference
+    @JsonIgnoreProperties("connectionsTo")
     private final List<Location> connectionsFrom = new ArrayList<>();
 
     @OneToMany(mappedBy = "location")

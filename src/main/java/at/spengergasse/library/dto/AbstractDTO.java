@@ -12,7 +12,7 @@ public abstract class AbstractDTO<E extends AbstractEntity> {
 
     private final UUID uuid;
 
-    abstract E toEntity();
+    public abstract E toEntity();
 
     public AbstractDTO(E entity) {
         this.uuid = entity.getUuid();

@@ -3,6 +3,7 @@ package at.spengergasse.library.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -18,6 +20,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @SuperBuilder
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Author extends Person {
 
     @OneToMany(mappedBy = "author", cascade = {CascadeType.PERSIST})

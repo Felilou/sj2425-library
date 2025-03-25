@@ -26,6 +26,11 @@ public class BookService extends GenericService<Book, BookDTO> {
         return bookRepo;
     }
 
+    @Override
+    public void updateValues(Book entity, BookDTO dto) {
+        entity.setLocation(entity.getLocation());
+    }
+
     @Transactional
     public List<Book> findByTitleContains(String title) {
         if(title==null||title.isEmpty()){
