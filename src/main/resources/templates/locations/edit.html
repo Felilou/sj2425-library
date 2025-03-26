@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/mainLayout}">
+<head>
+    <title>Edit Location</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <h1 class="animate__animated animate__fadeInLeftBig">Edit Location</h1>
+
+        <div class="card animate__animated animate__fadeInRightBig">
+            <div class="card-header bg-warning text-dark">
+                <h5 class="mb-0">Location Information</h5>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/locations}" method="post">
+                    <input type="hidden" name="uuid" th:value="${location.uuid}">
+
+                    <div class="mb-3">
+                        <label for="type" class="form-label">Type:</label>
+                        <select id="type" name="type" class="form-select" required>
+                            <option value="LIBRARY" th:selected="${location.type == T(at.spengergasse.library.model.Location.Type).LIBRARY}">Library</option>
+                            <option value="WAREHOUSE" th:selected="${location.type == T(at.spengergasse.library.model.Location.Type).WAREHOUSE}">Warehouse</option>
+                            <option value="STORE" th:selected="${location.type == T(at.spengergasse.library.model.Location.Type).STORE}">Store</option>
+                        </select>
+                    </div>
+
+                    <h5 class="mb-3">Address</h5>
+                    <div class="mb-3">
+                        <label for="address.street" class="form-label">Street:</label>
+                        <input type="text" id="address.street" name="address.street" class="form-control" th:value="${location.address.street}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="address.houseNumber" class="form-label">House Number:</label>
+                        <input type="number" id="address.houseNumber" name="address.houseNumber" class="form-control" th:value="${location.address.houseNumber}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="address.postalCode" class="form-label">Postal Code:</label>
+                        <input type="number" id="address.postalCode" name="address.postalCode" class="form-control" th:value="${location.address.postalCode}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="address.city" class="form-label">City:</label>
+                        <input type="text" id="address.city" name="address.city" class="form-control" th:value="${location.address.city}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="address.country" class="form-label">Country:</label>
+                        <input type="text" id="address.country" name="address.country" class="form-control" th:value="${location.address.country}" required>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <a th:href="@{/locations/{uuid}(uuid=${location.uuid})}" class="btn btn-secondary">
+                            <i class="bi bi-x-circle"></i> Cancel
+                        </a>
+                        <button type="submit" class="btn btn-warning">
+                            <i class="bi bi-save"></i> Update
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

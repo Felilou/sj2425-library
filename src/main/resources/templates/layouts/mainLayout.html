@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="en" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- WebJars -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <title th:text="${title}">Business Backend Application</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/animate.css/animate.min.css}">
+<body class="d-flex flex-column h-100">
+    <header>
+        <div th:replace="~{fragments/navbar :: navbar}"></div>
+    </header>
+
+    <main class="flex-shrink-0 flex-grow-1">
+        <div class="container mt-4" style="max-width: 1024px">
+            <div layout:fragment="content">
+                <!-- Content will be inserted here -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-auto">
+        <div th:replace="~{fragments/footer :: footer}"></div>
+    </footer>
+
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

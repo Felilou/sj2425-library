@@ -1,6 +1,5 @@
 package at.spengergasse.library.presentation.api;
 
-import at.spengergasse.library.dto.AbstractDTO;
 import at.spengergasse.library.model.AbstractEntity;
 import at.spengergasse.library.service.GenericService;
 

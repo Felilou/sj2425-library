@@ -1,6 +1,5 @@
 package at.spengergasse.library.service;
 
-import at.spengergasse.library.dto.AbstractDTO;
 import at.spengergasse.library.model.AbstractEntity;
 import at.spengergasse.library.persistance.repositories.UUIDRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -11,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public abstract class GenericService<E extends AbstractEntity, DTO extends AbstractDTO<E>> {
+public abstract class GenericService<E extends AbstractEntity, DTO> {
 
     public List<E> findAll() {
         return getUUIDRepository().findAll();
@@ -26,8 +25,9 @@ public abstract class GenericService<E extends AbstractEntity, DTO extends Abstr
     }
 
     public E create(DTO dto) {
-        return getUUIDRepository().save(dto.toEntity());
+        return getUUIDRepository().save(toEntity(dto));
     }
+
 
     public void delete(E entity) {
         getUUIDRepository().delete(entity);
@@ -40,6 +40,8 @@ public abstract class GenericService<E extends AbstractEntity, DTO extends Abstr
     public abstract UUIDRepository<E> getUUIDRepository();
 
     public abstract void updateValues(E entity, @Valid DTO dto);
+
+    public abstract E toEntity(DTO dto);
 
     public E update(UUID id, DTO dto) {
         E entityToUpdate = findByUUID(id);
